@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, FlatList, Button, TouchableOpacity } from "react-native";
+import { SafeAreaView, FlatList, Button, TouchableOpacity, Text } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { MovieCell } from "./components/MovieCell";
 import { styles } from "./MovieListScreen.styles";
@@ -14,7 +14,9 @@ export default function MovieListScreen({ navigation, route }) {
   const [actors, setActors] = useState([]);
 
   // TODO: Fill out the methods below.
-  const selectedMovie = (movieItem) => {};
+  const selectedMovie = (movieItem) => {
+    navigation
+  };
 
   const selectedFilterButton = () => {};
 
@@ -23,6 +25,7 @@ export default function MovieListScreen({ navigation, route }) {
       // TODO: Add a "Filter" button to the right bar button.
       // It should lead to the MovieFilterScreen, and pass the "actors" state
       // variable as a parameter.
+
     },
     [
       /* TODO: Insert dependencies here. */
@@ -55,11 +58,26 @@ export default function MovieListScreen({ navigation, route }) {
     };
 
     // TODO: Set up search & filter criteria.
+
     let meetsSearchCriteria = true;
     let meetsActorsCriteria = true;
 
     if (meetsSearchCriteria && meetsActorsCriteria) {
       // TODO: Return a MovieCell, wrapped by a TouchableOpacity so we can handle taps.
+          return (
+      <TouchableOpacity
+        onPress={() => selectedMovie(item)} // Pass the entire movie item to selectedMovie
+      >
+        <MovieCell
+          title={title}
+          year={year}
+          poster={poster}
+          actors={actors}
+          imdbRating={imdbRating}
+        />
+      </TouchableOpacity>
+    );
+
     } else {
       // If the item doesn't meet search/filter criteria, then we can
       // simply return null and it won't be rendered in the list!
@@ -72,8 +90,17 @@ export default function MovieListScreen({ navigation, route }) {
   return (
     <SafeAreaView style={styles.container}>
       {/* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
-                The third-party package should already be installed for you. */}
+                The third-party package should already be installed for you. */
+
+      }
       {/* TODO: Add a FlatList: https://reactnative.dev/docs/flatlist */}
+        <Text>Hello</Text>
+        <FlatList 
+          data={TABLE_DATA}
+          renderItem={({item})=>
+        <MovieCell movieItem={item}/>
+        }
+        />
     </SafeAreaView>
   );
 }
