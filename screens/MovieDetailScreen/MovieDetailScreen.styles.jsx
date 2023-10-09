@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: "#ffffff",
+    
   },
   h1: {
     fontFamily: "Avenir",
@@ -36,5 +37,10 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: "center",
   },
-  movieCellImage: { height: 80, width: 54, resizeMode: "contain" }
+  movieCellImage: { 
+    height: 300, 
+    width: 250, 
+    resizeMode: "contain",
+
+  }
 });

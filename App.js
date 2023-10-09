@@ -28,8 +28,15 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="All Movies" component={MovieListScreen}/>
-        <Stack.Screen name="About this Movie" component={MovieDetailScreen}/>
+        <Stack.Group>
+          <Stack.Screen name="All Movies" component={MovieListScreen}/>
+          <Stack.Screen name="About this Movie" component={MovieDetailScreen}/>
+        </Stack.Group>
+
+        <Stack.Group screenOptions={{presentation: 'modal'}}>
+        <Stack.Screen name="Filter" component={MovieFilterScreen}/>
+
+        </Stack.Group>
 
       </Stack.Navigator>
     </NavigationContainer>
