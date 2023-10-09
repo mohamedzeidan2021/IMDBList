@@ -29,7 +29,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="All Movies" component={MovieListScreen}/>
-        <Stack.Screen name="About this Movie" component={MovieListScreen}/>
+        <Stack.Screen name="About this Movie" component={MovieDetailScreen}/>
 
       </Stack.Navigator>
     </NavigationContainer>

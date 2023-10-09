@@ -15,7 +15,7 @@ export default function MovieListScreen({ navigation, route }) {
 
   // TODO: Fill out the methods below.
   const selectedMovie = (movieItem) => {
-    navigation
+    navigation.navigate("About this Movie", {movie: movieItem})
   };
 
   const selectedFilterButton = () => {};
@@ -57,26 +57,19 @@ export default function MovieListScreen({ navigation, route }) {
       return foundActor;
     };
 
-    // TODO: Set up search & filter criteria.
+    // TODO: Set up search & filter criteria./
 
-    let meetsSearchCriteria = true;
+    let meetsSearchCriteria = item.title.toLowerCase().includes(search.toLowerCase());
     let meetsActorsCriteria = true;
 
     if (meetsSearchCriteria && meetsActorsCriteria) {
       // TODO: Return a MovieCell, wrapped by a TouchableOpacity so we can handle taps.
-          return (
-      <TouchableOpacity
-        onPress={() => selectedMovie(item)} // Pass the entire movie item to selectedMovie
-      >
-        <MovieCell
-          title={title}
-          year={year}
-          poster={poster}
-          actors={actors}
-          imdbRating={imdbRating}
-        />
-      </TouchableOpacity>
-    );
+        return (
+          <TouchableOpacity onPress={() => selectedMovie(item)}>
+          <MovieCell movieItem={item}/>
+         </TouchableOpacity>
+        );
+
 
     } else {
       // If the item doesn't meet search/filter criteria, then we can
@@ -91,15 +84,20 @@ export default function MovieListScreen({ navigation, route }) {
     <SafeAreaView style={styles.container}>
       {/* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
                 The third-party package should already be installed for you. */
-
       }
+
+      <SearchBar
+      placeholder="Type Here..."
+      onChangeText={setSearch}
+      value={search}
+      />
+
       {/* TODO: Add a FlatList: https://reactnative.dev/docs/flatlist */}
         <Text>Hello</Text>
         <FlatList 
           data={TABLE_DATA}
-          renderItem={({item})=>
-        <MovieCell movieItem={item}/>
-        }
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
         />
     </SafeAreaView>
   );
